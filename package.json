@@ -1,11 +1,15 @@
 {
   "name": "earth",
   "version": "1.0.0",
-  "description": "Scene exported with Spline",
+  "description": "3d secn by 3js",
   "scripts": {
-    "start": "serve"
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "dependencies": {
+    "three": "^0.148.0"
   },
   "devDependencies": {
-    "serve": "^13.0.2"
+    "parcel-bundler": "^1.12.5"
   }
 }
