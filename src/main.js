@@ -27,6 +27,11 @@ const boxGeometry = new THREE.BoxGeometry();
 const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00FF00 });
 const box = new THREE.Mesh(boxGeometry, boxMaterial);
 
-scene.add(box)
-//render(scene,camera)
-renderer.render(scene, camera);    
+scene.add(box);
+function animate(time) {
+    box.rotation.x = time / 1000;
+    box.rotation.y = time / 1000;
+    //render(scene,camera)
+    renderer.render(scene, camera);
+}
+renderer.setAnimationLoop(animate)
