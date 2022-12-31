@@ -31,8 +31,14 @@ orbit.update();
 const boxGeometry = new THREE.BoxGeometry();
 const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00FF00 });
 const box = new THREE.Mesh(boxGeometry, boxMaterial);
-
 scene.add(box);
+
+//plane
+const planeGeometry = new THREE.PlaneGeometry(30, 30);
+const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFFF })
+const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+scene.add(plane);
+
 function animate(time) {
     box.rotation.x = time / 1000;
     box.rotation.y = time / 1000;
