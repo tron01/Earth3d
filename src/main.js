@@ -22,5 +22,11 @@ camera.position.y = 2;
 camera.position.x = 0;
 */ camera.position.set(0, 2, 5);
 
+//box
+const boxGeometry = new THREE.BoxGeometry();
+const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00FF00 });
+const box = new THREE.Mesh(boxGeometry, boxMaterial);
+
+scene.add(box)
 //render(scene,camera)
 renderer.render(scene, camera);    
