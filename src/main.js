@@ -1,9 +1,13 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-const renderer = new THREE.WebGL1Renderer();
+
+//renderer
+const renderer = new THREE.WebGL1Renderer({
+    canvas: document.querySelector('#bg'),
+});
+renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 
-document.body.appendChild(renderer.domElement);
 //console.log("hai");
 
 //scene
@@ -23,12 +27,12 @@ scene.add(axesHelper);
 camera.position.z = 5;
 camera.position.y = 2;
 camera.position.x = 0;
-*/ camera.position.set(0, 2, 5);
-
+*/ //camera.position.set(0, 2, 5);
+camera.position.setZ(30);
 
 //box
-const boxGeometry = new THREE.BoxGeometry();
-const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00FF00 });
+const boxGeometry = new THREE.TorusGeometry(10, 3, 16, 100);
+const boxMaterial = new THREE.MeshStandardMaterial({ color: 0xFF6347 });
 const box = new THREE.Mesh(boxGeometry, boxMaterial);
 scene.add(box);
 
@@ -51,11 +55,13 @@ scene.add(AmbientLight);
 
 //gridHelper
 const gridHelper = new THREE.GridHelper(200, 50);
-scene.add(gridHelper);
+//scene.add(gridHelper);
 //orbit controler
 const orbit = new OrbitControls(camera, renderer.domElement);
 
 function animate(time) {
+    requestAnimationFrame(animate);
+
     box.rotation.x = time / 1000;
     box.rotation.y = time / 1000;
     //render(scene,camera)
@@ -75,4 +81,9 @@ function addStar() {
 }
 Array(200).fill().forEach(addStar);
 
-renderer.setAnimationLoop(animate)
+//sky image as background
+const skyTexture = new THREE.TextureLoader().load('sky.jpg');
+
+scene.background = skyTexture;
+
+animate();
